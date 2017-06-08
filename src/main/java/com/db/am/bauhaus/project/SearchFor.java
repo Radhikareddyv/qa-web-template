@@ -3,6 +3,7 @@ package com.db.am.bauhaus.project;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.core.steps.Instrumented;
 import net.serenitybdd.screenplay.Actor;
+import net.serenitybdd.screenplay.GivenWhenThen;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
@@ -12,7 +13,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 import static net.serenitybdd.screenplay.questions.WebElementQuestion.the;
 
@@ -27,7 +27,7 @@ public class SearchFor implements Task {
     @Step("{0} enters search text #searchText")
     public <T extends Actor> void performAs(T theUser) {
         theUser.should(
-                seeThat("the search input box", the(SearchTarget.INPUT_BOX), isVisible())
+                GivenWhenThen.seeThat("the search input box", the(SearchTarget.INPUT_BOX), isVisible())
         );
 
         theUser.attemptsTo(

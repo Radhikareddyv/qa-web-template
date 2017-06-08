@@ -19,6 +19,13 @@ public class MainSearchPage extends PageObject {
     @FindBy(css = ".btn.btn-orange.btn-append")
     WebElementFacade searchButton;
 
+    @FindBy(id = "catnav-primary-link-2938-link")
+    WebElementFacade clothingAndAccessories;
+
+    @FindBy(id = "category-nav-side-nav-3090-link")
+    WebElementFacade clothingAndAccessoriesSubNav;
+
+
     public MainSearchPage(WebDriver driver) {
         super(driver);
     }
@@ -28,11 +35,20 @@ public class MainSearchPage extends PageObject {
         searchButton.click();
     }
 
+    public void clickOnClothingAndAccessoriesLink(){
+        clothingAndAccessories.click();
+    }
+
     public String getTopCategoriesHeader() {
         return find(By.cssSelector("h4.pb-xs-1-5")).getText();
     }
 
     public String getAllCategoriesHeader() {
         return find(By.cssSelector("h1.conform-heading.display-inline")).getText();
+    }
+
+    public AccessoriesPage clickAccessories() {
+        clothingAndAccessoriesSubNav.click();
+        return switchToPage(AccessoriesPage.class);
     }
 }

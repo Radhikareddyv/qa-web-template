@@ -3,9 +3,12 @@ package com.db.am.bauhaus.project.steps;
 import com.db.am.bauhaus.project.SearchFor;
 import com.db.am.bauhaus.project.SearchTarget;
 import com.db.am.bauhaus.project.SessionVar;
+import com.db.am.bauhaus.project.clickIcon;
 import com.db.am.bauhaus.project.pages.MainSearchPage;
 import com.db.am.bauhaus.project.steplib.SearchUser;
+import cucumber.api.PendingException;
 import cucumber.api.java.Before;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -69,5 +72,29 @@ public class SearchSteps {
                 seeThat("the top categories header ", the(SearchTarget.TOP_CATEGORIES_HEADER), containsText(searchText)),
                 seeThat("the all categories header ", the(SearchTarget.ALL_CATEGORIES_HEADER), containsText(searchText))
         );
+    }
+
+    @When("^he clicks on \"([^\"]*)\"$")
+    public void heClicksOn(String categoryName) throws Throwable {
+        user.clicks_on_clothing_and_accessories();
+    }
+
+    @And("^he clicks on subnav \"([^\"]*)\"$")
+    public void heClicksOnSubnav(String subNavCategory) throws Throwable {
+        user.clicks_accessories();
+    }
+
+    @Then("^the accessories page should be displayed$")
+    public void theAccessoriesPageShouldBeDisplayed() throws Throwable {
+        user.verify_accessories_page();
+    }
+
+    @When("^he clicks on an icon \"([^\"]*)\" \\(screenplay\\)$")
+    public void heClicksOnAnIconScreenplay(String categoryName) throws Throwable {
+        theActorInTheSpotlight().attemptsTo(clickIcon.With(categoryName));
+    }
+
+    @Then("^he should be taken to \"([^\"]*)\" products page \\(screenplay\\)$")
+    public void heShouldBeTakenToProductsPageScreenplay(String categoryName) throws Throwable {
     }
 }
